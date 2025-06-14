@@ -12,6 +12,9 @@ jobs:
       - name: Install python2
         run: |
           sudo apt install -y python2
+      - name: Install arm64 cross compiler
+        run: |
+          sudo apt install -y gcc-aarch64-linux-gnu
       - name: Build kernel
         id: build_kernel
         run: |
