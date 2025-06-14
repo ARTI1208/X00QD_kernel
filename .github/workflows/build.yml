@@ -1,0 +1,16 @@
+name: Build kernel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_release:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build kernel
+        id: build_kernel
+        run: |
+          make ARCH=arm64 O=build ze620kl-user-sdm660-perf_defconfig CROSS_COMPILE=aarch64-linux-gnu-
+          make -j4 O=build ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- DEFCONFIG=ze620kl-user-sdm660-perf_defconfig ASUS_BUILD_PROJECT=ZE620KL KBUILD_CFLAGS="-Wno-error"
