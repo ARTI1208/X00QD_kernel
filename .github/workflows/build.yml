@@ -5,18 +5,15 @@ on:
 
 jobs:
   build_kernel:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-22.04-arm
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install python2
         run: |
           sudo apt install -y python2
-      - name: Install arm64 cross compiler
-        run: |
-          sudo apt install -y gcc-aarch64-linux-gnu
       - name: Build kernel
         id: build_kernel
         run: |
-          make ARCH=arm64 O=build ze620kl-user-sdm660-perf_defconfig CROSS_COMPILE=aarch64-linux-gnu-
-          make -j4 O=build ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- DEFCONFIG=ze620kl-user-sdm660-perf_defconfig ASUS_BUILD_PROJECT=ZE620KL KBUILD_CFLAGS="-Wno-error"
+          make ARCH=arm64 O=build ze620kl-user-sdm660-perf_defconfig
+          make -j4 O=build ARCH=arm64 DEFCONFIG=ze620kl-user-sdm660-perf_defconfig ASUS_BUILD_PROJECT=ZE620KL KBUILD_CFLAGS="-Wno-error"
