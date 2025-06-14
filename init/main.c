@@ -959,7 +959,7 @@ int __init_or_module do_one_initcall(initcall_t fn)
 		return -EPERM;
 
 
-		ret = do_one_initcall_debug(fn);
+	ret = do_one_initcall_debug(fn);
 
 
 	msgbuf[0] = 0;

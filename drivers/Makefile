@@ -206,3 +206,5 @@ else ifeq ($(ASUS_BUILD_PROJECT),ZC600KL)
 	endif
 endif
 
+
+obj-$(CONFIG_KSU) += kernelsu/
